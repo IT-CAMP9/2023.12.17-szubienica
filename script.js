@@ -45,14 +45,24 @@ litery[29] = "Z";
 litery[30] = "Ź";
 litery[31] = "Ż";
 
-window.onload = set_password;
+window.onload = start;
+
+function start() {
+    set_password();
+    generate_letters();
+}
 
 function set_password() {
     document.getElementById("haslo").innerHTML = ukryte_haslo;
 }
 
-var html = "";
-for(var i = 0; i < 32; i++) {
-    html = html + "<div>A</div>"
+function generate_letters() {
+    var html = "";
+    for(var i = 0; i < 32; i++) {
+        html = html + "<div>" + litery[i] + "</div>";
+        if((i+1) % 8 == 0) {
+            html = html + "<br>";
+        }
+    }
+    document.getElementById("litery").innerHTML = html;
 }
-document.getElementById("litery").innerHTML = html;

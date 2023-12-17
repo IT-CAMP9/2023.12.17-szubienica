@@ -13,3 +13,30 @@ body {
     margin: 50px 0;
     text-align: center;
 }
+
+#szubienica {
+    display: inline-block;
+    width: 800px;
+    margin: 0;
+    padding: 0;
+}
+
+#szubienica img {
+    width: 799px;
+}
+
+#litery {
+    display: inline-block;
+}
+
+#litery div {
+    display: inline-block;
+    font-size: 70px;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    border: 2px solid LightGray;
+    border-radius: 15px;
+    margin: 7px;
+    cursor: pointer;
+}
