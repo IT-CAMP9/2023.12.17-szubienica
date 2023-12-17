@@ -1,0 +1,15 @@
+body {
+    background: black;
+    color: LightGray;
+}
+
+#content {
+    width: 1600px;
+    margin: 40px auto;
+}
+
+#haslo {
+    font-size: 100px;
+    margin: 50px 0;
+    text-align: center;
+}
