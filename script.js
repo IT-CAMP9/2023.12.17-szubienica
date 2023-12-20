@@ -2,6 +2,7 @@ var haslo = "it camp jest fajny";
 haslo = haslo.toUpperCase();
 
 var ukryte_haslo = "";
+var skuchy = 0;
 
 for(var i = 0; i < haslo.length; i++) {
     if(haslo.charAt(i) == " ") {
@@ -59,10 +60,49 @@ function set_password() {
 function generate_letters() {
     var html = "";
     for(var i = 0; i < 32; i++) {
-        html = html + "<div>" + litery[i] + "</div>";
+        html = html + '<div onclick="check(' + i + ');" id="l' + i + '">' + litery[i] + '</div>';
         if((i+1) % 8 == 0) {
             html = html + "<br>";
         }
     }
     document.getElementById("litery").innerHTML = html;
+}
+
+function check(letter_no) {
+    var litera = litery[letter_no];
+    var trafienie = false;
+    for(var i = 0; i < haslo.length; i++) {
+        if(haslo.charAt(i) == litera) {
+            ukryte_haslo = ukryte_haslo.substring(0, i) +
+                            litera +
+                            ukryte_haslo.substring(i+1);
+            trafienie = true;
+        }
+    }
+
+    var letter_id = "l" + letter_no;
+    document.getElementById(letter_id).setAttribute("onClick", ";");
+
+    if(!trafienie && skuchy < 9) {
+        skuchy++;
+        var obrazek = '<img src="img/s' + skuchy + '.jpg">';
+        document.getElementById("szubienica").innerHTML = obrazek;
+        document.getElementById(letter_id).style.background = "#550000";
+        document.getElementById(letter_id).style.color = "#FF0000";
+        document.getElementById(letter_id).style.border = "2px solid #FF0000";
+    } else {
+        document.getElementById(letter_id).style.background = "#005500";
+        document.getElementById(letter_id).style.color = "#00FF00";
+        document.getElementById(letter_id).style.border = "2px solid #00FF00";
+    }
+
+    if(skuchy >= 9) {
+        document.getElementById("litery").innerHTML = '<p id="lose">Przegrana !!</p>';
+    }
+
+    if(ukryte_haslo == haslo) {
+        document.getElementById("litery").innerHTML = '<p id="win">Wygrana !!</p>';
+    }
+
+    set_password();
 }
